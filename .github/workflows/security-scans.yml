@@ -1,0 +1,18 @@
+name: security-checks
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  security-static-scans:
+    uses: corabank/cybersec-cicd-tests/.github/workflows/security-static-scans.yml@main
+    secrets:
+      CYBERSEC_SLACK_WEBHOOK: ${{ secrets.CYBERSEC_SLACK_WEBHOOK }}
+
+#  ai-sast:
+#    needs: security-static-scans
+#    uses: corabank/cybersec-cicd-tests/.github/workflows/security-ai-sast.yml@main
+#    secrets:
+#      CYBERSEC_LITE_LLM_URL: ${{ secrets.CYBERSEC_LITE_LLM_URL }}
+#      CYBERSEC_LITE_LLM_API_KEY: ${{ secrets.CYBERSEC_LITE_LLM_API_KEY }}
